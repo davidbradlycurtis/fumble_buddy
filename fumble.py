@@ -137,15 +137,28 @@ thunder_injury = [
 
 #Disarm/knocked prone situations
 dp = [
-    "Disarmed!\n>>>Enemy is disarmed, throwing there weapon 5 feet away in a random direction.",
-    "Disarmed!\n>>>Enemy is disarmed, throwing there weapon 10 feet away in a random direction.",
-    "Disarmed!\n>>>Enemy is disarmed, throwing there weapon 15 feet away in a random direction.",
-    "Knocked Prone!\n>>>Enemy is knocked prone.",
-    "Knocked Prone!\n>>>Enemy is knocked prone.",
-    "Knocked Prone!\n>>>Enemy is knocked prone."
+    "Disarmed!\n>>>Target is disarmed, throwing there weapon 5 feet away in a random direction.",
+    "Disarmed!\n>>>Target is disarmed, throwing there weapon 10 feet away in a random direction.",
+    "Disarmed!\n>>>Target is disarmed, throwing there weapon 15 feet away in a random direction.",
+    "Knocked Prone!\n>>>Target is knocked prone.",
+    "Knocked Prone!\n>>>Target is knocked prone.",
+    "Knocked Prone!\n>>>Target is knocked prone."
+]
+
+dpm = [
+    "Disarmed!\n>>>Player is disarmed, throwing there weapon 5 feet away in a random direction.",
+    "Disarmed!\n>>>Player is disarmed, throwing there weapon 10 feet away in a random direction.",
+    "Disarmed!\n>>>Player is disarmed, throwing there weapon 15 feet away in a random direction.",
+    "Knocked Prone!\n>>>Player is knocked prone.",
+    "Knocked Prone!\n>>>Player is knocked prone.",
+    "Knocked Prone!\n>>>Player is knocked prone."
 ]
 
 additionalDie = "Devistating Critical!\n>>>Spend one hit die to add an additional damage die to the damage."
+
+endAction = "Critical Miss! Player ends their action."
+
+riposte = "Riposte!\n>>>Player triggers an opportunity attack for their target if they are in range."
 
 #############
 # Functions #
@@ -340,7 +353,7 @@ def hitPicker():
             print("Reduced Movement Speed!\n>>>Movement speed is halfed.\n>>>The condition ends if the target receives magical healing.\n>>>Alternatively, the condition ends after spending at least ten minutes around a fire or after a short or long rest.")
             print("")
         elif (roll < 100):          #Injury
-            print(crinjury[listPicker(3)])
+            print(cinjury[listPicker(3)])
             print("")
         else :                      #Super Critical!
             print("SUPER CRITICAL!!!\n>>>Deal maximum critical damage, as well as the following effect:")
@@ -488,151 +501,129 @@ def missPicker():
 
     if (damageType == "1" or damageType.lower() == "b" or damageType.lower() =="bludgeoning" or damageType == "2" or damageType.lower() == "s" or damageType.lower() =="slashing" or damageType == "3" or damageType.lower() == "p" or damageType.lower() =="piercing"):
         roll = rollDie(100)
-        if (roll < 45):         #
-            pass
-        elif (roll > 44 and roll < 75):         #
-            pass
-        elif (roll > 74 and roll < 90):         #
-            pass
-        elif (roll < 100):          #
-            injury()
+        if (roll < 45):         #Knocked Prone/Disarmed
+            print(dpm[listPicker(5)])
+            print("")
+        elif (roll > 44 and roll < 75):         #Riposte
+            print(riposte)
+            print("")
+        elif (roll > 74 and roll < 90):         #End Action
+            print(endAction)
+            print("")
+        elif (roll < 100):          #Damage
+            print("Wrong Target!\n>>>Player hits a random creature within range that is not the intended target.\n>>>If there are no targets in range, the player hits themselves.")
+            print("")
         else :
             print("Player gets another chance, re-roll attack!")
             print("")
     elif (damageType == "2" or damageType.lower() =="poison"):
-        roll = rollDie(100)
-        if (roll < 45):         #
-            pass
-        elif (roll > 44 and roll < 75):         #
-            pass
-        elif (roll > 74 and roll < 90):         #
-            pass
-        elif (roll < 100):          #
-            injury()
-        else :
+        roll = rollDie(10)
+        if (roll < 6):         #End Action
+            print(endAction)
+            print("")
+        elif (roll < 10):          #Damage
+            print("Compromised!\n>>>Player must suffer the effects of their own poison.")
+            print("")
+        else :              #Second Chance
             print("Player gets another chance, re-roll attack!")
             print("")
     elif (damageType == "3" or damageType.lower() == "a" or damageType.lower() =="acid"):
-        roll = rollDie(100)
-        if (roll < 45):         #
-            pass
-        elif (roll > 44 and roll < 75):         #
-            pass
-        elif (roll > 74 and roll < 90):         #
-            pass
-        elif (roll < 100):          #
-            injury()
-        else :
+        roll = rollDie(10)
+        if (roll < 6):         #End Action
+            print(endAction)
+            print("")
+        elif (roll < 10):          #Damage
+            print("Acid Burn!\n>>>Player must suffer the effects of their own acid attack.")
+            print("")
+        else :              #Second Chance
             print("Player gets another chance, re-roll attack!")
             print("")
     elif (damageType == "4" or damageType.lower() == "f" or damageType.lower() =="fire"):
-        roll = rollDie(100)
-        if (roll < 45):         #
-            pass
-        elif (roll > 44 and roll < 75):         #
-            pass
-        elif (roll > 74 and roll < 90):         #
-            pass
-        elif (roll < 100):          #
-            injury()
-        else :
+        roll = rollDie(10)
+        if (roll < 6):         #End Action
+            print(endAction)
+            print("")
+        elif (roll < 10):          #Damage
+            print("Severe Burns!\n>>>Player must suffer the effects of their own fire attack.")
+            print("")
+        else :              #Second Chance
             print("Player gets another chance, re-roll attack!")
             print("")
     elif (damageType == "5" or damageType.lower() == "c" or damageType.lower() =="cold"):
-        roll = rollDie(100)
-        if (roll < 45):         #
-            pass
-        elif (roll > 44 and roll < 75):         #
-            pass
-        elif (roll > 74 and roll < 90):         #
-            pass
-        elif (roll < 100):          #
-            injury()
-        else :
+        roll = rollDie(10)
+        if (roll < 6):         #End Action
+            print(endAction)
+            print("")
+        elif (roll < 10):          #Damage
+            print("Cold Chill!\n>>>Player must suffer the effects of their own cold attack.")
+            print("")
+        else :              #Second Chance
             print("Player gets another chance, re-roll attack!")
             print("")
     elif (damageType == "6" or damageType.lower() == "r" or damageType.lower() =="radiant"):
-        roll = rollDie(100)
-        if (roll < 45):         #
-            pass
-        elif (roll > 44 and roll < 75):         #
-            pass
-        elif (roll > 74 and roll < 90):         #
-            pass
-        elif (roll < 100):          #
-            injury()
-        else :
+        roll = rollDie(10)
+        if (roll < 6):         #End Action
+            print(endAction)
+            print("")
+        elif (roll < 10):          #Damage
+            print("Blessed!\n>>>Player rolls damage for the attack, then heals for half of that damage.")
+            print("")
+        else :              #Second Chance
             print("Player gets another chance, re-roll attack!")
             print("")
     elif (damageType == "7" or damageType.lower() == "l" or damageType.lower() =="lightning"):
-        roll = rollDie(100)
-        if (roll < 45):         #
-            pass
-        elif (roll > 44 and roll < 75):         #
-            pass
-        elif (roll > 74 and roll < 90):         #
-            pass
-        elif (roll < 100):          #
-            injury()
-        else :
+        roll = rollDie(10)
+        if (roll < 6):         #End Action
+            print(endAction)
+            print("")
+        elif (roll < 10):          #Damage
+            print("Short Circuit!\n>>>Player must suffer the effects of their own lightning attack.")
+            print("")
+        else :              #Second Chance
             print("Player gets another chance, re-roll attack!")
             print("")
     elif (damageType == "8" or damageType.lower() == "t" or damageType.lower() =="thunder"):
-        roll = rollDie(100)
-        if (roll < 45):         #
-            pass
-        elif (roll > 44 and roll < 75):         #
-            pass
-        elif (roll > 74 and roll < 90):         #
-            pass
-        elif (roll < 100):          #
-            injury()
-        else :
+        roll = rollDie(10)
+        if (roll < 6):         #End Action
+            print(endAction)
+            print("")
+        elif (roll < 10):          #Damage
+            print("Unwanted Sound!\n>>>Player must suffer the effects of their own thunder attack.")
+            print("")
+        else :              #Second Chance
             print("Player gets another chance, re-roll attack!")
             print("")
     elif (damageType == "9" or damageType.lower() =="force"):
-        roll = rollDie(100)
-        if (roll < 45):         #Disarms enemy or knocks them prone
-            print(dp[listPicker(5)])
+        roll = rollDie(10)
+        if (roll < 6):         #End Action
+            print(endAction)
             print("")
-        elif (roll > 44 and roll < 75):         #Adds another damage die (Costs 1 hit die)
-            print(additionalDie)
+        elif (roll < 10):          #Damage
+            print("Redirected Impact!\n>>>Player must suffer the effects of their own force attack.")
             print("")
-        elif (roll > 74 and roll < 90):         #Special Trait
-            print("Crushing Blow!\n>>>If the target is wielding a nonmagical shield, the shield is broken.\n>>If the target is not wielding a shield, their weapon is destroyed instead.")
-            print("")
-        elif (roll < 100):          #Injury
-            print(binjury[listPicker(11)])
-            print("")
-        else :      #Super Critical!
-            print("SUPER CRITICAL!!!\n>>>Deal maximum critical damage, as well as the following injury:")
-            print("")
-            print(major_injury[7])
+        else :              #Second Chance
+            print("Player gets another chance, re-roll attack!")
             print("")
     elif (damageType == "10" or damageType.lower() == "n" or damageType.lower() =="necrotic"):
-        roll = rollDie(100)
-        if (roll < 45):         #
-            pass
-        elif (roll > 44 and roll < 75):         #
-            pass
-        elif (roll > 74 and roll < 90):         #
-            pass
-        elif (roll < 100):          #
-            injury()
-        else :
+        roll = rollDie(10)
+        if (roll < 6):         #End Action
+            print(endAction)
+            print("")
+        elif (roll < 10):          #Damage
+            print("Contaminated!\n>>>Player must suffer the effects of their own necrotic attack.")
+            print("")
+        else :              #Second Chance
             print("Player gets another chance, re-roll attack!")
             print("")
     elif (damageType == "11" or damageType.lower() =="psychic"):
-        roll = rollDie(100)
-        if (roll < 45):         #
-            pass
-        elif (roll > 44 and roll < 75):         #
-            pass
-        elif (roll > 74 and roll < 90):         #
-            pass
-        elif (roll < 100):          #
-            injury()
-        else :
+        roll = rollDie(10)
+        if (roll < 6):         #End Action
+            print(endAction)
+            print("")
+        elif (roll < 10):          #Damage
+            print("In Your Own Head!\n>>>Player must suffer the effects of their own psychic attack.")
+            print("")
+        else :              #Second Chance
             print("Player gets another chance, re-roll attack!")
             print("")
     else:
