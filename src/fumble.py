@@ -2,73 +2,81 @@
 Fumble Buddy
 
 '''
-
+import argparse
 import random
 import config
+
+#############
+# Argparser #
+#############
+
+parser = argparse.ArgumentParser(description='Fumble Buddy! Execute this script to randomly determine critical miss/hits automatically.')
+parser.add_argument('--repeat', type=int, required=False, help='number of situations to generate')
+
+subparsers = parser.add_subparsers()
+parser_hit = subparsers.add_parser('hit', help='generate a critical hit situation')
+hit_group = parser_hit.add_mutually_exclusive_group(required=True)
+hit_group.add_argument('--b', action='store_true', required=False, help='bludgeoning damage')
+hit_group.add_argument('--s', action='store_true', required=False, help='slashing damage')
+hit_group.add_argument('--p', action='store_true', required=False, help='piercing damage')
+hit_group.add_argument('--poison', required=False, action='store_true', help='poison damage')
+hit_group.add_argument('--a', action='store_true', required=False, help='acid damage')
+hit_group.add_argument('--f', action='store_true', required=False, help='fire damage')
+hit_group.add_argument('--c', action='store_true', required=False, help='cold damage')
+hit_group.add_argument('--r', action='store_true', required=False, help='radiant damage')
+hit_group.add_argument('--l', action='store_true', required=False, help='lightning damage')
+hit_group.add_argument('--t', action='store_true', required=False, help='thunder damage')
+hit_group.add_argument('--force', action='store_true', required=False, help='force damage')
+hit_group.add_argument('--n', action='store_true', required=False, help='necrotic damage')
+hit_group.add_argument('--psychic', action='store_true', required=False, help='psychic damage')
+
+parser_miss = subparsers.add_parser('miss', help='generate a critical miss situation')
+miss_group = parser_miss.add_mutually_exclusive_group(required=True)
+miss_group.add_argument('--b', action='store_true', required=False, help='bludgeoning damage')
+miss_group.add_argument('--s', action='store_true', required=False, help='slashing damage')
+miss_group.add_argument('--p', action='store_true', required=False, help='piercing damage')
+miss_group.add_argument('--poison', required=False, action='store_true', help='poison damage')
+miss_group.add_argument('--a', action='store_true', required=False, help='acid damage')
+miss_group.add_argument('--f', action='store_true', required=False, help='fire damage')
+miss_group.add_argument('--c', action='store_true', required=False, help='cold damage')
+miss_group.add_argument('--r', action='store_true', required=False, help='radiant damage')
+miss_group.add_argument('--l', action='store_true', required=False, help='lightning damage')
+miss_group.add_argument('--t', action='store_true', required=False, help='thunder damage')
+miss_group.add_argument('--force', action='store_true', required=False, help='force damage')
+miss_group.add_argument('--n', action='store_true', required=False, help='necrotic damage')
+miss_group.add_argument('--psychic', action='store_true', required=False, help='psychic damage')
+
+parser_injury = subparsers.add_parser('injury', help='generate a random injury')
+injury_group = parser_injury.add_mutually_exclusive_group(required=True)
+injury_group.add_argument('--m', action='store_true', required=False, help='minor injury')
+injury_group.add_argument('--s', action='store_true', required=False, help='sever injury')
+
+args = parser.parse_args()
 
 #############
 # Functions #
 #############
 
-def run():
+def run(args):
     '''
     The main method containing fumble logic
 
     '''
-
-    print('')
-    print('Welcome to Fumble Buddy!            ')
-    print('1) Get Critical Miss Situation      ')
-    print('2) Get Critical Hit Situation       ')
-    print('3) Get Random Injury                ')
-    print('0) Quit                           ')
-    print('')
-    user_choice = input('What would you like to do? \n')
-    print('')
-    while not(user_choice.lower() == 'quit' or user_choice.lower() == 'q' or user_choice == '0'):
-        if user_choice == '1':
-            if rollDie(10) > 4:
-                miss_picker()
-            else:
-                print(config.NORMAL_MISS)
-        elif user_choice == '2':
-            if rollDie(10) > 4:
-                hit_picker()
-            else:
-                print(config.NORMAL_HIT)
-        elif user_choice == '3':
-            injury()
+    if args.choice == 'miss':
+        if rollDie(10) > 4:
+            miss_picker()
         else:
-            print('')
-            print('Invalid Input, try again!         ')
-        print('')
-        print('1) Get Critical Miss Situation      ')
-        print('2) Get Critical Hit Situation       ')
-        print('3) Get Random Injury                ')
-        print('0) (Q)uit                           ')
-        print('')
-        user_choice = input('What would you like to do? ')
-    print('Fubmle Buddy Terminated!        ')
-    print('')
+            print(config.NORMAL_MISS)
+    elif args.choice == 'hit':
+        if rollDie(10) > 4:
+            hit_picker()
+        else:
+            print(config.NORMAL_HIT)
+    elif args.choice == 'injury':
+        injury()
 
 def hit_picker():
-    print('')
-    print('1) (B)ludgeoning                    ')
-    print('2) (S)lashing                       ')
-    print('3) (P)iercing                       ')
-    print('4) Poison                           ')
-    print('5) (A)cid                           ')
-    print('6) (F)ire                           ')
-    print('7) (C)old                           ')
-    print('8) (R)adiant                        ')
-    print('9) (L)ightning                      ')
-    print('10) (T)hunder                       ')
-    print('11) Force                           ')
-    print('12) (N)ecrotic                      ')
-    print('13) Psychic                         ')
-    print('')
     damage_type = input('Select damage type:')
-    print('')
 
     if (damage_type == '1' or damage_type.lower() == 'b' or damage_type.lower() == 'bludgeoning'):
         roll = rollDie(100)
@@ -259,21 +267,7 @@ def hit_picker():
         hit_picker()
 
 def miss_picker():
-    print('')
-    print('1) (B)ludgeoning, (S)lashing, or (P)iercing')
-    print('2) Poison                           ')
-    print('3) (A)cid                           ')
-    print('4) (F)ire                           ')
-    print('5) (C)old                           ')
-    print('6) (R)adiant                        ')
-    print('7) (L)ightning                      ')
-    print('8) (T)hunder                       ')
-    print('9) Force                           ')
-    print('10) (N)ecrotic                      ')
-    print('11) Psychic                         ')
-    print('')
     damage_type = input('Select damage type:')
-    print('')
 
     if (damage_type == '1' or damage_type.lower() == 'b' or damage_type.lower() =='bludgeoning' or damage_type == '2' or damage_type.lower() == 's' or damage_type.lower() =='slashing' or damage_type == '3' or damage_type.lower() == 'p' or damage_type.lower() =='piercing'):
         roll = rollDie(100)
@@ -410,4 +404,4 @@ def listPicker(count):
 #############
 #   Body    #
 #############
-run()
+run(args)
