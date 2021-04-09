@@ -284,6 +284,15 @@ args = parser.parse_args()
 def repeat(fun, args):
     [fun(args) for _ in range(args.repeat)]
 
+def miss(op1, op2, op3):
+    roll = rollDie(10)
+    if roll < 6:
+        print(op1)
+    elif roll < 10:
+        print(op2)
+    else:
+        print(op3)
+
 def hit_picker(args):
     if (args.b):
         roll = rollDie(100)
@@ -483,94 +492,34 @@ def miss_picker(args):
             print(SECOND_CHANCE)
 
     elif (args.poison):
-        roll = rollDie(10)
-        if roll < 6:
-            print(END_ACTION)
-        elif roll < 10:
-            print(COMPROMISED)
-        else:
-            print(SECOND_CHANCE)
+        miss(END_ACTION, COMPROMISED, SECOND_CHANCE)
 
     elif (args.a):
-        roll = rollDie(10)
-        if roll < 6:
-            print(END_ACTION)
-        elif roll < 10:
-            print(ACID_BURN)
-        else:
-            print(SECOND_CHANCE)
+        miss(END_ACTION, ACID_BURN, SECOND_CHANCE)
 
     elif (args.f):
-        roll = rollDie(10)
-        if roll < 6:
-            print(END_ACTION)
-        elif roll < 10:
-            print(SEVERE_BURNS)
-        else:
-            print(SECOND_CHANCE)
+        miss(END_ACTION, SEVERE_BURNS, SECOND_CHANCE)
 
     elif (args.c):
-        roll = rollDie(10)
-        if roll < 6:
-            print(END_ACTION)
-        elif roll < 10:
-            print(COLD_CHILL)
-        else:
-            print(SECOND_CHANCE)
+        miss(END_ACTION, COLD_CHILL, SECOND_CHANCE)
 
     elif (args.r):
-        roll = rollDie(10)
-        if roll < 6:
-            print(END_ACTION)
-        elif roll < 10:
-            print(BLESSED)
-        else:
-            print(SECOND_CHANCE)
+        miss(END_ACTION, BLESSED, SECOND_CHANCE)
 
     elif (args.l):
-        roll = rollDie(10)
-        if roll < 6:
-            print(END_ACTION)
-        elif roll < 10:
-            print(SHORT_CIRCUIT)
-        else:
-            print(SECOND_CHANCE)
+        miss(END_ACTION, SHORT_CIRCUIT, SECOND_CHANCE)
 
     elif (args.t):
-        roll = rollDie(10)
-        if roll < 6:
-            print(END_ACTION)
-        elif roll < 10:
-            print(UNWANTED_SOUND)
-        else:
-            print(SECOND_CHANCE)
+        miss(END_ACTION, UNWANTED_SOUND, SECOND_CHANCE)
 
     elif (args.force):
-        roll = rollDie(10)
-        if roll < 6:
-            print(END_ACTION)
-        elif roll < 10:
-            print(REDIRECTED)
-        else:
-            print(SECOND_CHANCE)
+        miss(END_ACTION, REDIRECTED, SECOND_CHANCE)
 
     elif (args.n):
-        roll = rollDie(10)
-        if roll < 6:
-            print(END_ACTION)
-        elif roll < 10:
-            print(CONTAMINATED)
-        else:
-            print(SECOND_CHANCE)
+        miss(END_ACTION, CONTAMINATED, SECOND_CHANCE)
 
     elif (args.psychic):
-        roll = rollDie(10)
-        if roll < 6:
-            print(END_ACTION)
-        elif roll < 10:
-            print(IN_YOUR_HEAD)
-        else:
-            print(SECOND_CHANCE)
+        miss(END_ACTION, IN_YOUR_HEAD, SECOND_CHANCE)
 
 def injury(args):
     if (args.m):
