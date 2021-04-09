@@ -1,14 +1,14 @@
 # Fumble Buddy
 
-One Paragraph of project description goes here
+Everyone loves critical hits in Dungeons and Dragons 5e, but critical misses never get any of the love. While no one enjoys getting a critical miss on an attack, Fumble Buddy makes them far more interesting and challenging!  
 
-## Getting Started
-
-These instructions will get you a copy of the project up and running on your local machine for development and testing purposes. See deployment for notes on how to deploy the project on a live system.
+## Use
+Fumble Buddy offers three randomly generated services: critical hits, critical misses, and injuries. Each
+* Note: This command-line client is meant only as inspiration for the dungeon master, and should only be used at the dungeon master's discretion.
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
+To run this script you must have Python 3.0 or greater installed. If you do not have Python installed, follow [this guide](https://www.tutorialdocs.com/tutorial/python3/setup-guide.html) to install.
 
 ```
 Give examples
