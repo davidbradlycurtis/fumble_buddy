@@ -15,10 +15,6 @@ Fumble Buddy offers three randomly generated services: critical hits, critical m
 
 To run this script you must have Python 3.0 or greater installed. If you do not have Python installed, follow [this guide](https://www.tutorialdocs.com/tutorial/python3/setup-guide.html) to install.
 
-```
-Give examples
-```
-
 ## Installing
 
 Clone this repo or copy the contents of the fumble.py to an easily available location on your computer.
