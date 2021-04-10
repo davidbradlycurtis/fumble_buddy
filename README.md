@@ -1,13 +1,33 @@
 # Fumble Buddy
 
-Everyone loves critical hits in Dungeons and Dragons 5e, but critical misses never get any of the love. While no one enjoys getting a critical miss on an attack, Fumble Buddy makes them far more interesting and challenging!  
+I have always felt there are certain elements missing in combat in Dungeons and Dragons 5e, such as broken swords/shields, disarming apponents, grusome injuries, and dramatic weapon drops. Unfortunatly, the RAW for these events leave their frequency entierly up to the DM which puts them in an awkward situation. 
+
+"When do I make the players drop their weapons on a critical failur? Everytime? Never? What about injuries? How do I decide what limb gets hacked off?"
+
+I wanted to avoid these hard questions while I managed the game, and thus Fumble Buddy was born!
 
 ## Use
 Fumble Buddy offers three randomly generated services: critical hits, critical misses, and injuries. For critical hits/misses, the program randomly determines the outcome of the attack and generates a scenario based on the damage type of the attack. For injuries, the program randomly selects an injury based on desired severity of the injury. You may also specify a ```repeat``` value to generate multiple scenarios to pick from.
 
 * Note: This command-line client is meant only as inspiration for the dungeon master, and should only be used at the dungeon master's discretion.  
 
-### Examples
+## Prerequisites
+
+To run this script you must have Python 3.0 or greater installed. If you do not have Python installed, follow [this guide](https://www.tutorialdocs.com/tutorial/python3/setup-guide.html) to install.
+
+```
+Give examples
+```
+
+## Installing
+
+Clone this repo or copy the contents of the fumble.py to an easily available location on your computer.
+
+```
+git clone https://github.com/davidbradlycurtis/fumble_buddy.git
+```
+
+### Use Examples
 #### Critical Hit
 My player attacks a Gnoll with a sword and rolls and natural 20, instead of following the RAW critical hit rules I enter the following command:
 
@@ -55,32 +75,6 @@ Teeth Knocked Out.
 ```
 
 So now in addtion to the damage from the fall, I will tell the player they landed on a rock (mouth first) knocking their teeth out.
-
-## Prerequisites
-
-To run this script you must have Python 3.0 or greater installed. If you do not have Python installed, follow [this guide](https://www.tutorialdocs.com/tutorial/python3/setup-guide.html) to install.
-
-```
-Give examples
-```
-
-## Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 
 
