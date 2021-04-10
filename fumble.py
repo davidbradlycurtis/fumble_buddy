@@ -523,9 +523,9 @@ def miss_picker(args):
 
 def injury(args):
     if (args.m):
-        print(MINOR_INJURY[listPicker(12)])
+        print(MINOR_INJURY[listPicker(11)])
     elif (args.s):
-        print(MAJOR_INJURY[listPicker(11)])
+        print(MAJOR_INJURY[listPicker(10)])
 
 def rollDie(die):
     return random.randint(1, die)
